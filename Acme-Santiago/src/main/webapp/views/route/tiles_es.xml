@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="route/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar ruta" />
+		<put-attribute name="body" value="/views/route/edit.jsp" />
+	</definition>
+	
+		<definition name="route/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de rutas" />
+		<put-attribute name="body" value="/views/route/list.jsp" />
+	</definition>
+	
+	<definition name="route/myRoutes" extends="master.page">	
+		<put-attribute name="title" value="Lista de mis rutas" />
+		<put-attribute name="body" value="/views/route/myRoutes.jsp" />
+	</definition>
+	
+		<definition name="route/display" extends="master.page">	
+		<put-attribute name="title" value="Mostrar ruta" />
+		<put-attribute name="body" value="/views/route/display.jsp" />
+	</definition>
+	
+	<definition name="route/searchLength" extends="master.page">	
+		<put-attribute name="title" value="Buscar ruta por longitud" />
+		<put-attribute name="body" value="/views/route/searchLength.jsp" />
+	</definition>
+	
+	<definition name="route/searchNHikes" extends="master.page">	
+		<put-attribute name="title" value="Buscar ruta por numero de excursiones" />
+		<put-attribute name="body" value="/views/route/searchHikes.jsp" />
+	</definition>
+	
+		<definition name="route/listComments" extends="master.page">	
+		<put-attribute name="title" value="Lista de comentarios" />
+		<put-attribute name="body" value="/views/route/listComments.jsp" />
+	</definition>
+	
+		<definition name="route/addOrRemove" extends="master.page">	
+		<put-attribute name="title" value="Excursiones" />
+		<put-attribute name="body" value="/views/route/addOrRemove.jsp" />
+	</definition>
+	
+</tiles-definitions>

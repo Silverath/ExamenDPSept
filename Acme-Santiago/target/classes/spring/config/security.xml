@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * security.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"	
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    ">
+
+	<!-- Security infrastructure -->
+
+	<bean id="loginService" class="security.LoginService" />
+
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- Access control -->
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/" access="permitAll" /> 
+
+		<security:intercept-url pattern="/favicon.ico" access="permitAll" /> 
+		<security:intercept-url pattern="/images/**" access="permitAll" /> 
+		<security:intercept-url pattern="/scripts/**" access="permitAll" /> 
+		<security:intercept-url pattern="/styles/**" access="permitAll" /> 
+
+		<security:intercept-url pattern="/views/misc/index.jsp" access="permitAll" /> 
+
+		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
+		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
+
+		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
+
+		<security:intercept-url pattern="/administrator/action-1.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/action-2.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/dashboard.do" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/listTabooWord.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/addTabooWord.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/listTabooChirps.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/listTabooComments.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/deleteChirpsByAdmin.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/administrator/deleteCommentsByAdmin.do" access="hasRole('ADMIN')" />
+		
+		
+			<security:intercept-url pattern="/user/list.do" access="permitAll" /> 
+		<security:intercept-url pattern="/user/display.do" access="permitAll" /> 
+		<security:intercept-url pattern="/user/follow.do" access="hasRole('USER')" /> 
+		
+		<security:intercept-url pattern="/innkeeper/certify.do" access="hasRole('INNKEEPER')" /> 
+		
+		<security:intercept-url pattern="/follow/**" access="hasRole('USER')" /> 
+		<security:intercept-url pattern="/route/list.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/display.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/listSearchKeyword.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/searchKeyword.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/listSearchLength.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/searchLength.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/listSearchHikes.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/searchHikes.do" access="permitAll" /> 
+		<security:intercept-url pattern="/route/add.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/remove.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/addHikes.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/removeHikes.do" access="hasRole('USER')" />
+		
+
+		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/profile/action-2.do" access="isAuthenticated()" /> 
+		<security:intercept-url pattern="/profile/action-3.do" access="isAuthenticated()" /> 
+		
+		<security:intercept-url	pattern="/terms/terms.do" access="permitAll" />
+		<security:intercept-url	pattern="/terms/cookies.do" access="permitAll" />
+		<security:intercept-url	pattern="/terms/privacy.do" access="permitAll" />
+		
+		<security:intercept-url pattern="/actor/register.do" access="!isAuthenticated()" />
+		
+		<security:intercept-url pattern="/route/edit.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/delete.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/myRoutes.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/create.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/route/deleteByAdmin.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/route/listComments.do" access="hasRole('USER')" />
+		
+		<security:intercept-url pattern="/hike/create.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/hike/edit.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/hike/list.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/hike/showPictures.do" access="hasRole('USER') or hasRole('ADMIN')" />
+		<security:intercept-url pattern="/hike/listAdvertisements.do" access="hasRole('AGENT')" /> 
+		<security:intercept-url pattern="/hike/listWithoutAdvertisements.do" access="hasRole('AGENT')" />
+		
+		<security:intercept-url pattern="/chirp/list.do" access="hasRole('USER') or hasRole('ADMIN')" />
+		<security:intercept-url pattern="/chirp/create.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/chirp/edit.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/chirp/deleteAdmin.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/chirp/listChirpsPostedByMyFollows.do" access="hasRole('USER')" />
+	
+		<security:intercept-url pattern="/comment/list.do" access="hasRole('USER') or hasRole('ADMIN')" />
+		<security:intercept-url pattern="/comment/create.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/comment/edit.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/comment/showPictures.do" access="hasRole('USER') or hasRole('ADMIN')" />
+		
+		<security:intercept-url pattern="/advertisement/listTaboo.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/advertisement/list.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/advertisement/deleteAdmin.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/advertisement/deleteAdminTaboo.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/advertisement/create.do" access="hasRole('AGENT')" />
+		<security:intercept-url pattern="/advertisement/edit.do" access="hasRole('AGENT')" />
+		
+		
+		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
+
+		<security:form-login 
+			login-page="/security/login.do"
+			password-parameter="password" 
+			username-parameter="username"
+			authentication-failure-url="/security/loginFailure.do" />
+
+		<security:logout 
+			logout-success-url="/" 
+			invalidate-session="true" />
+	</security:http>
+
+</beans>

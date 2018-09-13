@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccountAdmin" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountUser1" class="security.UserAccount">
+		<property name="username" value="user1" />
+		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountUser2" class="security.UserAccount">
+		<property name="username" value="user2" />
+		<property name="password" value="7e58d63b60197ceb55a1c487989a3720" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccountInnkeeper1" class="security.UserAccount">
+		<property name="username" value="innkeeper1" />
+		<property name="password" value="86903e666824a841e9e3d50e4b1240bf" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="INNKEEPER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="userAccountInnkeeper2" class="security.UserAccount">
+		<property name="username" value="innkeeper2" />
+		<property name="password" value="5b666146423e686ba85a21cbd55f0446" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="INNKEEPER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccountAgent1" class="security.UserAccount">
+		<property name="username" value="agent1" />
+		<property name="password" value="83a87fd756ab57199c0bb6d5e11168cb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountAgent2" class="security.UserAccount">
+		<property name="username" value="agent2" />
+		<property name="password" value="b1a4a6b01cc297d4677c4ca6656e14d7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccountAgent3" class="security.UserAccount">
+		<property name="username" value="agent3" />
+		<property name="password" value="6f097a447415dd5030d579a9051165f0" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 	Admin
+ -->	<bean id="admin" class="domain.Administrator">
+		<property name="userAccount" ref="userAccountAdmin" />
+		<property name="name" value="admin 1" />
+		<property name="surname" value="surname admin 1" />
+		<property name="address" value="postal 
+		Adress admin 1" />
+		<property name="email" value="admin@santiago.com" />
+		<property name="phone" value="+34617557203" />
+	</bean>
+	
+		<!-- 	Users -->
+	
+<bean id="user1" class="domain.User">
+		<property name="userAccount" ref="userAccountUser1" />
+		<property name="name" value="user 1" />
+		<property name="surname" value="surname user 1" />
+		<property name="address" value="postal Adress user 1" />
+		<property name="email" value="user1@santiago.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="isBanned" value="false" />
+		<property name="isSuspicious" value="false" />
+		<property name="routes">
+			<list>
+				<ref bean="route1" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment1" />
+			</list>
+		</property>
+		<property name="chirps">
+			<list>
+				<ref bean="chirp1" />
+				<ref bean="chirp3" />
+			</list>
+		</property>
+		<property name="follower">
+			<list>
+				<ref bean="follower1" />
+			</list>
+		</property>
+		<property name="follow">
+			<list>
+				<ref bean="follower2" />
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="user2" class="domain.User">
+		<property name="userAccount" ref="userAccountUser2" />
+		<property name="name" value="user 2" />
+		<property name="surname" value="surname user 2" />
+		<property name="address" value="postal Adress user 2" />
+		<property name="email" value="user2@santiago.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="isBanned" value="false" />
+		<property name="isSuspicious" value="false" />
+		<property name="routes">
+			<list>
+				<ref bean="route2" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment2" />
+				<ref bean="comment3" />
+				<ref bean="comment5" />
+				<ref bean="comment6" />
+			</list>
+		</property>
+		<property name="chirps">
+			<list>
+				<ref bean="chirp2" />
+				<ref bean="chirp4" />
+			</list>
+		</property>
+		<property name="follower">
+			<list>
+				<ref bean="follower2" />
+			</list>
+		</property>
+		<property name="follow">
+			<list>
+				<ref bean="follower1" />
+			</list>
+		</property>
+	</bean>	
+	
+	<!-- Inkeepers -->
+	
+	<bean id="innkeeper1" class="domain.Innkeeper">
+		<property name="userAccount" ref="userAccountInnkeeper1" />
+		<property name="name" value="innkeeper 1" />
+		<property name="surname" value="surname innkeeper 1" />
+		<property name="address" value="postal Adress innkeeper 1" />
+		<property name="email" value="innkeeper1@santiago.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="inns">
+			<list>
+			<ref bean="inn1" />
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="innkeeper2" class="domain.Innkeeper">
+		<property name="userAccount" ref="userAccountInnkeeper2" />
+		<property name="name" value="innkeeper 2" />
+		<property name="surname" value="surname innkeeper 2" />
+		<property name="address" value="postal Adress innkeeper 2" />
+		<property name="email" value="innkeeper2@santiago.com" />
+		<property name="phone" value="+34617557203" />
+		<property name="inns">
+			<list>
+			<ref bean="inn2" />
+			</list>
+		</property>
+	</bean>	
+	
+<!-- 	Comments
+ -->	<bean id="comment1" class="domain.Comment">
+		<property name="moment" value="10/05/2018 13:45" />
+		<property name="description" value="Me encanto la ruta" />
+		<property name="pictures">
+			<list>
+			<value>https://fotografias-compromiso.atresmedia.com/clipping/cmsimages02/2017/08/02/4B0BC380-7955-477F-AA7E-D93D358925A8/58.jpg</value>
+            <value>http://www.bioenciclopedia.com/wp-content/uploads/2011/11/nutria-800.jpg</value>
+			</list>
+			</property>
+		<property name="rating" value="0" />
+		<property name="user" ref="user1" />
+		<property name="route" ref="route1" />
+		</bean>
+	
+	<bean id="comment2" class="domain.Comment">
+		<property name="moment" value="22/06/2018 18:45" />
+		<property name="description" value="Una foto de la excursion" />
+		<property name="pictures">
+			<list>
+			<value>https://wakyma.com/blog/wp-content/uploads/2017/02/xel-perezoso-770x460.jpg.pagespeed.ic.RTNjmUCZsm.jpg</value>
+            <value>https://i.pinimg.com/originals/08/75/16/087516fc8f543a45affa6d6b8a5bf529.jpg</value>
+			</list>
+			</property>
+		<property name="rating" value="1" />
+		<property name="user" ref="user2" />
+		<property name="hike" ref="hike1" />
+		</bean>
+		
+		<bean id="comment3" class="domain.Comment">
+		<property name="moment" value="21/07/2018 15:45" />
+		<property name="description" value="Una foto de sex" />
+		<property name="pictures">
+			<list>
+			</list>
+			</property>
+		<property name="rating" value="2" />
+		<property name="user" ref="user2" />
+		<property name="hike" ref="hike1" />
+		</bean>
+		
+		<bean id="comment4" class="domain.Comment">
+		<property name="moment" value="21/07/2018 15:45" />
+		<property name="description" value="Una foto de viagra" />
+		<property name="pictures">
+			<list>
+			</list>
+			</property>
+		<property name="rating" value="3" />
+		<property name="user" ref="user2" />
+		<property name="hike" ref="hike2" />
+		</bean>
+		
+		<bean id="comment5" class="domain.Comment">
+		<property name="moment" value="10/07/2018 15:45" />
+		<property name="description" value="Comentario a la ruta 1" />
+		<property name="rating" value="3" />
+		<property name="user" ref="user2" />
+		<property name="route" ref="route1" />
+		<property name="pictures">
+			<list>
+			</list>
+			</property>
+		</bean>
+		
+		<bean id="comment6" class="domain.Comment">
+		<property name="moment" value="24/07/2018 15:45" />
+		<property name="description" value="Comentario a la ruta 2, cialis" />
+		<property name="rating" value="1" />
+		<property name="user" ref="user2" />
+		<property name="route" ref="route2" />
+		<property name="pictures">
+			<list>
+			</list>
+			</property>
+		</bean>
+		
+		<!-- 	Credit Cards
+ -->
+		<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Antonio Jesús" />
+		<property name="brandName" value="VISA" />
+		<property name="number" value="4254236698841678" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2019" />
+		<property name="CVV" value="664" />
+	</bean>
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="Eduardo" />
+		<property name="brandName" value="VISA" />
+		<property name="number" value="4353102989904411" />
+		<property name="expirationMonth" value="4" />
+		<property name="expirationYear" value="2019" />
+		<property name="CVV" value="672" />
+	</bean>
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="Lidia" />
+		<property name="brandName" value="MASTERCARD" />
+		<property name="number" value="5518578378662836" />
+		<property name="expirationMonth" value="8" />
+		<property name="expirationYear" value="2020" />
+		<property name="CVV" value="613" />
+	</bean>
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="Alex" />
+		<property name="brandName" value="VISA" />
+		<property name="number" value="4388576018410707" />
+		<property name="expirationMonth" value="1" />
+		<property name="expirationYear" value="2019" />
+		<property name="CVV" value="614" />
+	</bean>
+	
+	<!-- Followers -->
+	
+	<bean id="follower1" class="domain.Follower">
+	    <property name="follow" ref="user1" />
+	    <property name="followed" ref="user2" />
+	</bean>
+	
+	<bean id="follower2" class="domain.Follower">
+	    <property name="follow" ref="user2" />
+	    <property name="followed" ref="user1" />
+	</bean>
+	
+	<!-- Hikes -->
+	
+	<bean id="hike1" class="domain.Hike">
+		<property name="name" value="Senderismo" />
+		<property name="description" value="Excursion de senderismo para novatos" />
+		<property name="length" value="500" />
+		<property name="originCity" value="CiudadOrigen1" />
+		<property name="destinyCity" value="CiudadDestino1" />
+		<property name="difficulty" value="EASY" />
+		<property name="pictures">
+			<list>
+				 <value>http://www.korcula-outdoor.com/wp-content/uploads/2016/05/hike-zrnovo-21.jpg</value>
+                 <value>http://hikeontario.com/wp-content/uploads/2014/03/HikeGroup01.jpg</value>
+			</list>
+			</property>
+			<property name="comments">
+			<list>
+					<ref bean="comment2" />
+					<ref bean="comment3" />
+			</list>
+			</property>
+			<property name="routes"> 
+			<list>
+					<ref bean="route1" />
+			</list>
+			</property>
+			<property name="advertisements">
+			<list>
+				<ref bean="advertisement1" />
+				<ref bean="advertisement2" />
+				<ref bean="advertisement4" />
+
+
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="hike2" class="domain.Hike">
+		<property name="name" value="Escalada" />
+		<property name="description" value="Excursion de escalada para expertos" />
+		<property name="length" value="800" />
+		<property name="originCity" value="CiudadOrigen2" />
+		<property name="destinyCity" value="CiudadDestino2" />
+		<property name="difficulty" value="DIFFICULT" />
+		<property name="pictures">
+			<list>
+				 <value>https://www.climbing.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cg_faces:center%2Cq_auto:good%2Cw_620/MTQ4NTAxMDM1ODA2MTA2NzY1/o4bcgtff7lkuic44pxu4.jpg</value>
+                 <value>https://uiaa-web.azureedge.net/wp-content/uploads/2016/09/uiaa-mountaineering-grades-1200x800-01.jpg</value>
+			</list>
+			</property>
+			<property name="comments">
+			<list>
+			<ref bean="comment4" />
+			</list>
+			</property>
+			<property name="routes"> 
+			<list>
+					<ref bean="route2" />
+			</list>
+			</property>
+			<property name="advertisements">
+			<list>
+				<ref bean="advertisement3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="hike3" class="domain.Hike">
+		<property name="name" value="Montaña" />
+		<property name="description" value="Excursion de escalada para principiantes" />
+		<property name="length" value="1000.5" />
+		<property name="originCity" value="CiudadOrigen3" />
+		<property name="destinyCity" value="CiudadDestino3" />
+		<property name="difficulty" value="EASY" />
+		<property name="pictures">
+			<list>
+			</list>
+			</property>
+			<property name="comments">
+			<list>
+			</list>
+			</property>
+			<!-- <property name="route" ref="route2" /> -->
+			<property name="advertisements">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<!-- Inns -->
+		
+		<bean id="inn1" class="domain.Inn">
+		<property name="name" value="Inn1" />
+		<property name="badge" value="badge1" />
+		<property name="address" value="address1" />
+		<property name="phone" value="+34654878987" />
+		<property name="email" value="inn1@santiago.com" />
+		<property name="website" value="www.inn1.com" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="innkeeper" ref="innkeeper1" />
+	</bean>
+	
+			<bean id="inn2" class="domain.Inn">
+		<property name="name" value="Inn2" />
+		<property name="badge" value="badge2" />
+		<property name="address" value="address2" />
+		<property name="phone" value="+34654878287" />
+		<property name="email" value="inn2@santiago.com" />
+		<property name="website" value="www.inn2.com" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="innkeeper" ref="innkeeper2" />
+	</bean>
+	
+	<!--  Routes -->
+	
+			<bean id="route1" class="domain.Route">
+		<property name="name" value="Route1" />
+		<property name="length" value="1500.0" />
+		<property name="description" value="description1" />
+		<property name="hikes">
+			<list>
+			<ref bean="hike1" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			<ref bean="comment1" />
+			<ref bean="comment5" />
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				 <value>http://www.route.cl/images/route-109.jpg?crc=529154100</value>
+                 <value>http://www.foryoutour.nl/wp-content/uploads/2018/05/route.jpg</value>
+			</list>
+			</property>
+		<property name="user" ref="user1" />
+	</bean>
+	
+			<bean id="route2" class="domain.Route">
+		<property name="name" value="Route2" />
+		<property name="length" value="1250.0" />
+		<property name="description" value="description2" />
+		<property name="hikes">
+			<list>
+			<ref bean="hike2" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			<ref bean="comment6" />
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				 <value>https://www.justamerica.co.uk/site/regions/coast_to_coast/maps/new_route_66_map.gif</value>
+                 <value>https://media-cdn.tripadvisor.com/media/photo-s/08/1a/b1/32/titilaka.jpg</value>
+			</list>
+			</property>
+		<property name="user" ref="user2" />
+	</bean>
+	
+	<!-- Chrips -->
+	
+		<bean id="chirp1" class="domain.Chirp">
+		<property name="moment" value="2018/05/21" />
+		<property name="title" value="title1" />
+		<property name="description" value="description1" />
+		<property name="user" ref="user1" />
+	</bean>
+	
+		<bean id="chirp2" class="domain.Chirp">
+		<property name="moment" value="2018/04/21" />
+		<property name="title" value="title2" />
+		<property name="description" value="description2" />
+		<property name="user" ref="user2" />
+	</bean>
+	
+	<bean id="chirp3" class="domain.Chirp">
+		<property name="moment" value="2018/06/21" />
+		<property name="title" value="title3" />
+		<property name="description" value="description3 cialis" />
+		<property name="user" ref="user1" />
+	</bean>
+	
+	<bean id="chirp4" class="domain.Chirp">
+		<property name="moment" value="2018/07/21" />
+		<property name="title" value="title4 viagra" />
+		<property name="description" value="description4" />
+		<property name="user" ref="user2" />
+	</bean>
+	
+	
+	<!-- Configuration System -->
+
+	<bean id="configuration" class="domain.Configuration">
+		<property name="taboo">
+			<list>
+				<value>sex</value>
+				<value>cialis</value>
+				<value>viagra</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Agents -->
+
+	<bean id="agent1" class="domain.Agent">
+		<property name="userAccount" ref="userAccountAgent1" />
+		<property name="name" value="agent 1" />
+		<property name="surname" value="surname agent 1" />
+		<property name="address" value="postal Adress agent 1" />
+		<property name="email" value="agent1@newspaper.com" />
+		<property name="phone" value="+34617557973" />
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement1" />
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean id="agent2" class="domain.Agent">
+		<property name="userAccount" ref="userAccountAgent2" />
+		<property name="name" value="agent 2" />
+		<property name="surname" value="surname agent 2" />
+		<property name="address" value="postal Adress agent 2" />
+		<property name="email" value="agent2@newspaper.com" />
+		<property name="phone" value="+34612557973" />
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement2" />
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="agent3" class="domain.Agent">
+		<property name="userAccount" ref="userAccountAgent3" />
+		<property name="name" value="agent 3" />
+		<property name="surname" value="surname agent 3" />
+		<property name="address" value="postal Adress agent 3" />
+		<property name="email" value="agent3@newspaper.com" />
+		<property name="phone" value="+34613557973" />
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement3" />
+			</list>
+		</property>
+			
+	</bean>
+	
+	
+	
+	<!-- Advertisements -->
+	
+	<bean id="advertisement1" class="domain.Advertisement">
+		<property name="title" value="advertisement1" />
+		<property name="banner"
+			value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="targetPage"
+			value="https://st2.depositphotos.com/1007566/12246/v/950/depositphotos_122466204-stock-illustration-man-target-page-web-search.jpg" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="daysDisplayed" value="2" />
+		<property name="agent" ref="agent1" />
+		<property name="hike" ref="hike1" />
+	</bean>
+
+	<bean id="advertisement2" class="domain.Advertisement">
+		<property name="title" value="advertisement2" />
+		<property name="banner"
+			value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="targetPage"
+			value="https://st2.depositphotos.com/1007566/12246/v/950/depositphotos_122466204-stock-illustration-man-target-page-web-search.jpg" />
+		<property name="creditCard" ref="creditCard2" />
+		<property name="daysDisplayed" value="4" />
+		<property name="agent" ref="agent2" />
+		<property name="hike" ref="hike1" />
+	</bean>
+
+	<bean id="advertisement3" class="domain.Advertisement">
+		<property name="title" value="advertisement3 sex" />
+		<property name="banner"
+			value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="targetPage"
+			value="https://st2.depositphotos.com/1007566/12246/v/950/depositphotos_122466204-stock-illustration-man-target-page-web-search.jpg" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="daysDisplayed" value="6" />
+		<property name="agent" ref="agent3" />
+		<property name="hike" ref="hike2" />
+	</bean>
+
+	<bean id="advertisement4" class="domain.Advertisement">
+		<property name="title" value="advertisement4" />
+		<property name="banner"
+			value="https://www.cerebriti.com/uploads/0b8d55790024b6a75aeb4d9772ae2706.jpg" />
+		<property name="targetPage"
+			value="https://st2.depositphotos.com/1007566/12246/v/950/depositphotos_122466204-stock-illustration-man-target-page-web-search.jpg" />
+		<property name="creditCard" ref="creditCard1" />
+		<property name="daysDisplayed" value="8" />
+		<property name="agent" ref="agent1" />
+		<property name="hike" ref="hike1" />
+	</bean>
+	
+</beans>
