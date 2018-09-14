@@ -109,6 +109,8 @@ public class ReportService {
 	public Report save(final Report report) {
 		if (report.getFinalMode() == null)
 			report.setFinalMode(false);
+		final Date now = new Date(System.currentTimeMillis());
+		report.setMoment(now);
 		final Report res = this.reportRepository.save(report);
 		return res;
 	}
@@ -154,6 +156,10 @@ public class ReportService {
 		Assert.isTrue(r.getRoute() == null);
 		Assert.notNull(r);
 		this.reportRepository.delete(r);
+	}
+
+	public Collection<Report> findAllNotApprovedRejected() {
+		return this.reportRepository.findAllNotApprovedRejected();
 	}
 
 	public Collection<Report> findAllByUser(final int userId) {

@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI }" modelAttribute="form">
+<form:form action="${requestURI }" modelAttribute="approveRejectForm">
 	
 	
 	<form:hidden path="report"/>

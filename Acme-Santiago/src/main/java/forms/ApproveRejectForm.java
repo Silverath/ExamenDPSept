@@ -23,7 +23,7 @@ public class ApproveRejectForm {
 	}
 
 	@NotBlank
-	@Length(min = 0, max = 500)
+	@Length(min = 1, max = 100)
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getComment() {
 		return this.comment;

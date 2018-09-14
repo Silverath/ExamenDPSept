@@ -75,10 +75,12 @@
 		<security:intercept-url pattern="/report/listByRoute.do" access="permitAll" />
 		<security:intercept-url pattern="/report/create.do" access="hasRole('USER')" />
 		<security:intercept-url pattern="/report/edit.do" access="hasRole('USER')" />
+		<security:intercept-url pattern="/report/delete.do" access="hasRole('USER')" />
 		<security:intercept-url pattern="/report/selectRoute.do" access="hasRole('USER')" />
 		<security:intercept-url pattern="/report/listMine.do" access="hasRole('USER')" />
 		<security:intercept-url pattern="/report/approve.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/report/reject.do" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/report/listNotApprovedOrRejected.do" access="hasRole('ADMIN')" />
 		
 
 		<security:intercept-url pattern="/profile/action-1.do" access="isAuthenticated()" /> 

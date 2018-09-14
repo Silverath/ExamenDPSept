@@ -44,6 +44,14 @@
 					<li><a href="route/list.do"><spring:message code="master.page.route.list" /></a></li>					
 				</ul>
 			</li>
+			
+			<li><a class="fNiv"><spring:message code="master.page.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+
+					<li><a href="report/listNotApprovedOrRejected.do"><spring:message code="master.page.report.not" /></a></li>
+				</ul>
+			</li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('USER')">

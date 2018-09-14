@@ -73,17 +73,17 @@
 	<spring:message code="report.finalMode" var="finalModeHeader" />
 	<display:column property="finalMode" title="${finalModeHeader}" sortable="false" style="${style}"/>
 	
-	<spring:message code="report.approved" var="approvedHeader" />
-	<display:column property="approved" title="${approvedHeader}" sortable="false" style="${style}"/>
-	
-	<spring:message code="report.rejected" var="rejectedHeader" />
-	<display:column property="rejected" title="${rejectedHeader}" sortable="false" style="${style}"/>
-	
 	<spring:message code="report.comment" var="commentHeader" />
 	<display:column property="comment" title="${commentHeader}" sortable="false" style="${style}"/>
 	 
 	 <security:authorize access="hasRole('ADMIN')">
 	 
+	 <spring:message code="report.approved" var="approvedHeader" />
+	<display:column property="approved" title="${approvedHeader}" sortable="false" style="${style}"/>
+	
+	<spring:message code="report.rejected" var="rejectedHeader" />
+	<display:column property="rejected" title="${rejectedHeader}" sortable="false" style="${style}"/>
+	
 	 <display:column style="${style}">	
 		<jstl:if test="${row.finalMode == true and row.approved == false and row.rejected == false and not empty row.route and empty row.administrator}">
 		<a href="report/approve.do?reportId=${row.id}"><spring:message code="report.approve" />	
@@ -98,6 +98,8 @@
 		</jstl:if>
 	</display:column>
 	
+	
+	
 	</security:authorize>
 	
 	<security:authorize access="hasRole('USER')">
@@ -111,13 +113,20 @@
 	
 	
 		<display:column style="${style}">
+		<jstl:if test="${row.user.userAccount.username==loggedactor.username and !row.approved and !row.rejected and empty row.route}">
+		<a href="report/delete.do?reportId=${row.id}"><spring:message code="report.delete" />	
+		</a>
+		</jstl:if>
+		</display:column>
+		
+		<display:column style="${style}">
 		<jstl:if test="${row.finalMode	 and !row.approved and !row.rejected and empty row.route}">
 		<a href="report/selectRoute.do?reportId=${row.id}"><spring:message code="report.selectRoute" />	
 		</a>
 		</jstl:if>
 		</display:column>
-	
-	
+		
+		
 	
 	
 	</security:authorize>

@@ -675,8 +675,6 @@
 		<property name="finalMode" value="false" />
 		<property name="comment" value="null" />
 		<property name="user" ref="user1" />
-		<property name="route" ref="null" />
-		<property name="administrator" ref="admin" />
 	</bean>
 	
 	<bean id="report2" class="domain.Report">
@@ -690,8 +688,8 @@
 		<property name="finalMode" value="true" />
 		<property name="comment" value="null" />
 		<property name="user" ref="user2" />
-		<property name="route" ref="null" />
-		<property name="administrator" ref="admin" />
+		<property name="route" ref="route2" />
+		
 	</bean>
 	
 	<bean id="report3" class="domain.Report">

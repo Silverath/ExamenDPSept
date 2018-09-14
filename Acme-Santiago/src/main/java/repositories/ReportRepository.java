@@ -15,7 +15,10 @@ public interface ReportRepository extends JpaRepository<Report, Integer> {
 	@Query("select r from Report r where r.user.id = ?1")
 	Collection<Report> findAllByUser(int userId);
 
-	@Query("select r from Report r where r.route.id = ?1 and r.finalMode = TRUE and r.route != null")
+	@Query("select r from Report r where r.route.id = ?1 and r.finalMode = TRUE and r.route != null and r.approved = TRUE")
 	Collection<Report> findAllByRoute(int routeId);
+
+	@Query("select r from Report r where r.finalMode = TRUE and r.route != null and r.approved = FALSE and r.rejected = FALSE")
+	Collection<Report> findAllNotApprovedRejected();
 
 }

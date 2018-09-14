@@ -49,8 +49,18 @@ public class ReportController extends AbstractController {
 	public ModelAndView list(@RequestParam final int routeId) {
 		ModelAndView result;
 		Collection<Report> reports = new ArrayList<Report>();
-
 		reports = this.reportService.findAllByRoute(routeId);
+		result = new ModelAndView("report/list");
+		result.addObject("reports", reports);
+		return result;
+	}
+
+	@RequestMapping(value = "/listNotApprovedOrRejected", method = RequestMethod.GET)
+	public ModelAndView listNotApprovedRejected() {
+		ModelAndView result;
+		Collection<Report> reports = new ArrayList<Report>();
+
+		reports = this.reportService.findAllNotApprovedRejected();
 		result = new ModelAndView("report/list");
 		result.addObject("reports", reports);
 		return result;
@@ -89,25 +99,25 @@ public class ReportController extends AbstractController {
 		Assert.notNull(reportId);
 		ModelAndView result;
 		final Report report = this.reportService.findOneToRejectOrApprove(reportId);
-		final ApproveRejectForm form = new ApproveRejectForm();
-		form.setReport(report);
-		result = this.approveModelAndView(form);
+		final ApproveRejectForm approveRejectForm = new ApproveRejectForm();
+		approveRejectForm.setReport(report);
+		result = this.approveModelAndView(approveRejectForm);
 		return result;
 	}
 
 	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = "save")
-	public ModelAndView saveApprove(@Valid final ApproveRejectForm form, final BindingResult binding) {
+	public ModelAndView saveApprove(@Valid final ApproveRejectForm approveRejectForm, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
-			result = this.approveModelAndView(form);
+			result = this.approveModelAndView(approveRejectForm);
 		else
 			try {
-				final Report report = form.getReport();
-				report.setComment(form.getComment());
+				final Report report = approveRejectForm.getReport();
+				report.setComment(approveRejectForm.getComment());
 				this.reportService.saveApprove(report);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
-				result = this.approveModelAndView(form);
+				result = this.approveModelAndView(approveRejectForm);
 			}
 
 		return result;
@@ -118,25 +128,25 @@ public class ReportController extends AbstractController {
 		Assert.notNull(reportId);
 		ModelAndView result;
 		final Report report = this.reportService.findOneToRejectOrApprove(reportId);
-		final ApproveRejectForm form = new ApproveRejectForm();
-		form.setReport(report);
-		result = this.rejectModelAndView(form);
+		final ApproveRejectForm approveRejectForm = new ApproveRejectForm();
+		approveRejectForm.setReport(report);
+		result = this.rejectModelAndView(approveRejectForm);
 		return result;
 	}
 
 	@RequestMapping(value = "/reject", method = RequestMethod.POST, params = "save")
-	public ModelAndView saveReject(@Valid final ApproveRejectForm form, final BindingResult binding) {
+	public ModelAndView saveReject(@Valid final ApproveRejectForm approveRejectForm, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
-			result = this.rejectModelAndView(form);
+			result = this.rejectModelAndView(approveRejectForm);
 		else
 			try {
-				final Report report = form.getReport();
-				report.setComment(form.getComment());
+				final Report report = approveRejectForm.getReport();
+				report.setComment(approveRejectForm.getComment());
 				this.reportService.saveReject(report);
 				result = new ModelAndView("redirect:/welcome/index.do");
 			} catch (final Throwable oops) {
-				result = this.rejectModelAndView(form);
+				result = this.rejectModelAndView(approveRejectForm);
 			}
 
 		return result;
@@ -222,36 +232,36 @@ public class ReportController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView approveModelAndView(final ApproveRejectForm form) {
+	protected ModelAndView approveModelAndView(final ApproveRejectForm approveRejectForm) {
 		ModelAndView result;
 
-		result = this.approveModelAndView(form, null);
+		result = this.approveModelAndView(approveRejectForm, null);
 
 		return result;
 	}
-	protected ModelAndView approveModelAndView(final ApproveRejectForm form, final String message) {
+	protected ModelAndView approveModelAndView(final ApproveRejectForm approveRejectForm, final String message) {
 		ModelAndView result;
 
 		result = new ModelAndView("report/approveReject");
-		result.addObject("form", form);
+		result.addObject("approveRejectForm", approveRejectForm);
 		result.addObject("message", message);
 		result.addObject("requestURI", "report/approve.do");
 
 		return result;
 	}
 
-	protected ModelAndView rejectModelAndView(final ApproveRejectForm form) {
+	protected ModelAndView rejectModelAndView(final ApproveRejectForm approveRejectForm) {
 		ModelAndView result;
 
-		result = this.rejectModelAndView(form, null);
+		result = this.rejectModelAndView(approveRejectForm, null);
 
 		return result;
 	}
-	protected ModelAndView rejectModelAndView(final ApproveRejectForm form, final String message) {
+	protected ModelAndView rejectModelAndView(final ApproveRejectForm approveRejectForm, final String message) {
 		ModelAndView result;
 
 		result = new ModelAndView("report/approveReject");
-		result.addObject("form", form);
+		result.addObject("approveRejectForm", approveRejectForm);
 		result.addObject("message", message);
 		result.addObject("requestURI", "report/reject.do");
 
