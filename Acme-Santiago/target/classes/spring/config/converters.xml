@@ -50,6 +50,10 @@
 		<bean class="converters.AdvertisementToStringConverter"/>
 		<bean class="converters.StringToAdvertisementConverter"/>
 		
+		<bean class="converters.ReportToStringConverter"/>
+		<bean class="converters.StringToReportConverter"/>
+
+		
 	</util:list>
 	
 </beans>

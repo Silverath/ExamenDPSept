@@ -63,6 +63,14 @@
 					<li><a href="follow/listUserFollowers.do"><spring:message code="master.page.followersList" /></a></li>
 				</ul>
 			</li>
+			
+			<li><a class="fNiv"><spring:message code="master.page.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+
+					<li><a href="report/listMine.do"><spring:message code="master.page.report.mine" /></a></li>
+				</ul>
+			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.chirp" /></a>
 				<ul>
 					<li class="arrow"></li>

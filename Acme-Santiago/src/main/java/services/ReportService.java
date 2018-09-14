@@ -6,10 +6,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ReportRepository;
@@ -22,16 +21,13 @@ import domain.User;
 public class ReportService {
 
 	@Autowired
-	private AdministratorService	administratorService;
-
-	@Autowired
 	private ReportRepository		reportRepository;
 
 	@Autowired
-	private UserService				userService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private RouteService			routeService;
+	private UserService				userService;
 
 
 	public ReportService() {
@@ -47,6 +43,8 @@ public class ReportService {
 		result.setTicker(this.createTicker());
 		result.setApproved(false);
 		result.setRejected(false);
+		final Date now = new Date(System.currentTimeMillis());
+		result.setMoment(now);
 
 		return result;
 	}
@@ -92,7 +90,7 @@ public class ReportService {
 		Assert.notNull(res);
 		Assert.isTrue(res.getFinalMode());
 		Assert.isTrue(!res.getApproved() && !res.getRejected());
-		Assert.isTrue(res.getRoute().equals(null));
+		Assert.isTrue(res.getRoute() == null);
 
 		return res;
 	}
@@ -102,7 +100,8 @@ public class ReportService {
 		Assert.notNull(res);
 		Assert.isTrue(res.getFinalMode());
 		Assert.isTrue(!res.getApproved() && !res.getRejected());
-		Assert.isTrue(!res.getRoute().equals(null));
+		Assert.isTrue(res.getRoute() != null);
+		Assert.isTrue(res.getAdministrator() == null);
 
 		return res;
 	}
@@ -145,16 +144,24 @@ public class ReportService {
 		Assert.isTrue(res.getUser().equals(principal));
 		Assert.notNull(res);
 		Assert.isTrue(!res.getApproved() && !res.getRejected());
-		Assert.isTrue(res.getRoute().equals(null));
+		Assert.isTrue(res.getRoute() == null);
 		return res;
 	}
 	public void delete(final int reportId) {
 		final Report r = this.findOne(reportId);
 		final User principal = this.userService.findByPrincipal();
 		Assert.isTrue(r.getUser().equals(principal));
-		Assert.isTrue(r.getRoute().equals(null));
+		Assert.isTrue(r.getRoute() == null);
 		Assert.notNull(r);
 		this.reportRepository.delete(r);
+	}
+
+	public Collection<Report> findAllByUser(final int userId) {
+		return this.reportRepository.findAllByUser(userId);
+	}
+
+	public Collection<Report> findAllByRoute(final int routeId) {
+		return this.reportRepository.findAllByRoute(routeId);
 	}
 
 	public void flush() {

@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -36,8 +35,6 @@ public class Report extends DomainEntity {
 	private String	comment;
 
 
-	@NotBlank
-	@Length(min = 1, max = 250)
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getComment() {
 		return this.comment;
@@ -68,7 +65,6 @@ public class Report extends DomainEntity {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-	@Future
 	public Date getMoment() {
 		return this.moment;
 	}

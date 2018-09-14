@@ -664,4 +664,64 @@
 		<property name="hike" ref="hike1" />
 	</bean>
 	
+	<bean id="report1" class="domain.Report">
+		<property name="title" value="report1" />
+		<property name="description" value="report1" />
+		<property name="gauge" value="1" />
+		<property name="moment" value="2018/03/03 23:59" />
+		<property name="ticker" value="yrty6r5t" />
+		<property name="approved" value="false" />
+		<property name="rejected" value="false" />
+		<property name="finalMode" value="false" />
+		<property name="comment" value="null" />
+		<property name="user" ref="user1" />
+		<property name="route" ref="null" />
+		<property name="administrator" ref="admin" />
+	</bean>
+	
+	<bean id="report2" class="domain.Report">
+		<property name="title" value="report2" />
+		<property name="description" value="report2" />
+		<property name="gauge" value="2" />
+		<property name="moment" value="2018/03/03 23:59" />
+		<property name="ticker" value="htyytjty" />
+		<property name="approved" value="false" />
+		<property name="rejected" value="false" />
+		<property name="finalMode" value="true" />
+		<property name="comment" value="null" />
+		<property name="user" ref="user2" />
+		<property name="route" ref="null" />
+		<property name="administrator" ref="admin" />
+	</bean>
+	
+	<bean id="report3" class="domain.Report">
+		<property name="title" value="report3" />
+		<property name="description" value="report3" />
+		<property name="gauge" value="1" />
+		<property name="moment" value="2018/03/03 23:59" />
+		<property name="ticker" value="dfbgfntyt" />
+		<property name="approved" value="false" />
+		<property name="rejected" value="true" />
+		<property name="finalMode" value="true" />
+		<property name="comment" value="blaeblae" />
+		<property name="user" ref="user1" />
+		<property name="route" ref="route1" />
+		<property name="administrator" ref="admin" />
+	</bean>
+	
+	<bean id="report4" class="domain.Report">
+		<property name="title" value="report4" />
+		<property name="description" value="report4" />
+		<property name="gauge" value="1" />
+		<property name="moment" value="2018/03/03 23:59" />
+		<property name="ticker" value="fbgfy6j" />
+		<property name="approved" value="true" />
+		<property name="rejected" value="false" />
+		<property name="finalMode" value="true" />
+		<property name="comment" value="blaeblae" />
+		<property name="user" ref="user2" />
+		<property name="route" ref="route2" />
+		<property name="administrator" ref="admin" />
+	</bean>
+	
 </beans>

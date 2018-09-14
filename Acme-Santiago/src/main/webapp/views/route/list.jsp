@@ -45,6 +45,8 @@
 			<a href="route/listComments.do?routeId=${row.id}"><spring:message code="route.comments"/>
 			</a>
 		</display:column>
+		
+		
 	</security:authorize>
 	<spring:message code="route.display" var="displayTitle"/>
 	<display:column title ="${displayTitle}">	
@@ -58,7 +60,11 @@
 		</a>
 	</display:column>
 	</security:authorize>
-	
+	<spring:message code="route.reports" var="reportsHeader" />	
+		<display:column title="${reportsHeader}">	
+			<a href="report/listByRoute.do?routeId=${row.id}"><spring:message code="route.reports"/>
+			</a>
+		</display:column>	
 	
 	</display:table>
 	
