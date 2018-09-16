@@ -1,0 +1,8 @@
+Query 1:
+
+select (count(t)*1.0)/(select count(x) from Report x) from Route t where (select count(w) from Report w where w.route.id = t.id)>0;
+
+Query 2:
+
+select t.administrator from Report t where (select count(w) from Report w where w.administrator.id = t.administrator.id and w.rejected = TRUE)
+>= all(select (select count(w2) from Report w2 where w2.administrator.id = t2.administrator.id and w2.rejected = TRUE) from Report t2);
